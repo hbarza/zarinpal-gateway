@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CODNITIVE
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE_EULA.html.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.codnitive.com/en/terms-of-service-softwares/
+ * http://www.codnitive.com/fa/terms-of-service-softwares/
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @category   Codnitive
+ * @package    Codnitive_ZarinpalGateway
+ * @author     Hassan Barza <support@codnitive.com>
+ * @copyright  Copyright (c) 2012 CODNITIVE Co. (http://www.codnitive.com)
+ * @license    http://www.codnitive.com/en/terms-of-service-softwares/ End User License Agreement (EULA 1.0)
+ */
+-->
+<config>
+	<modules>
+		<Codnitive_ZarinpalGateway>
+			<version>1.0.00</version>
+			<title>Zarinpal Online Payment</title>
+			<link><![CDATA[http://www.codnitive.com/fa/magento-extensions/zarinpal-online-payment.html]]></link>
+			<codPool>community</codPool>
+		</Codnitive_ZarinpalGateway>
+	</modules>
+	<global>
+		<blocks>
+			<zarinpalgateway>
+				<class>Codnitive_ZarinpalGateway_Block</class>
+			</zarinpalgateway>
+		</blocks>
+		<helpers>
+			<zarinpalgateway>
+				<class>Codnitive_ZarinpalGateway_Helper</class>
+			</zarinpalgateway>
+		</helpers>
+		<models>
+			<zarinpalgateway>
+				<class>Codnitive_ZarinpalGateway_Model</class>
+				<resourceModel>zarinpalgateway_resource</resourceModel>
+			</zarinpalgateway>
+			<zarinpalgateway_resource>
+				<class>Codnitive_ZarinpalGateway_Model_Resource</class>
+				<deprecatedNode>zarinpalgateway_mysql4</deprecatedNode>
+				<entities>
+					<transaction>
+						<table>codnitive_zarinpal_gateway_payment</table>
+					</transaction>
+				</entities>
+			</zarinpalgateway_resource>
+		</models>
+		<resources>
+			<zarinpalgateway_setup>
+				<setup>
+					<module>Codnitive_ZarinpalGateway</module>
+					<class>Codnitive_ZarinpalGateway_Model_Resource_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</zarinpalgateway_setup>
+			<zarinpalgateway_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</zarinpalgateway_write>
+			<zarinpalgateway_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</zarinpalgateway_read>
+		</resources>
+	</global>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<Codnitive_ZarinpalGateway>
+					<files>
+						<default>Codnitive_ZarinpalGateway.csv</default>
+					</files>
+				</Codnitive_ZarinpalGateway>
+			</modules>
+		</translate>
+		<events>
+			<controller_action_predispatch>
+				<observers>
+					<notification_check>
+						<type>singleton</type>
+						<class>notification/feed_updates</class>
+						<method>checkExtensionsFeed</method>
+					</notification_check>
+				</observers>
+			</controller_action_predispatch>
+		</events>
+	</adminhtml>
+
+	<admin>
+		<routers>
+			<zarinpalgateway>
+				<use>admin</use>
+				<args>
+					<module>Codnitive_ZarinpalGateway</module>
+					<frontName>zarinpalgateway</frontName>
+				</args>
+			</zarinpalgateway>
+		</routers>
+	</admin>
+
+	<frontend>
+		<secure_url>
+			<zarinpalgateway_processing>/zarinpalgateway/processing</zarinpalgateway_processing>
+		</secure_url>
+		<routers>
+			<zarinpalgateway>
+				<use>standard</use>
+				<args>
+					<module>Codnitive_ZarinpalGateway</module>
+					<frontName>zarinpalgateway</frontName>
+				</args>
+			</zarinpalgateway>
+		</routers>
+
+		<translate>
+			<modules>
+				<Codnitive_ZarinpalGateway>
+					<files>
+						<default>Codnitive_ZarinpalGateway.csv</default>
+					</files>
+				</Codnitive_ZarinpalGateway>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<zarinpalgateway>
+					<file>codnitive/zarinpalgateway.xml</file>
+				</zarinpalgateway>
+			</updates>
+		</layout>
+	</frontend>
+
+	<default>
+		<payment>
+			<zarinpalgateway>
+				<active>0</active>
+				<model>zarinpalgateway/Zpgw</model>
+				<title>Zarinpal Online Payment</title>
+				<allowspecific>1</allowspecific>
+				<specificcountry>IR</specificcountry>
+				<chkfrq>518400</chkfrq>
+				<frtrn>1</frtrn>
+			</zarinpalgateway>
+		</payment>
+	</default>
+</config>

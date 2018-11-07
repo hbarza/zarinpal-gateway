@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CODNITIVE
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE_EULA.html.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.codnitive.com/en/terms-of-service-softwares/
+ * http://www.codnitive.com/fa/terms-of-service-softwares/
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @category   Codnitive
+ * @package    Codnitive_ZarinpalGateway
+ * @author     Hassan Barza <support@codnitive.com>
+ * @copyright  Copyright (c) 2012 CODNITIVE Co. (http://www.codnitive.com)
+ * @license    http://www.codnitive.com/en/terms-of-service-softwares/ End User License Agreement (EULA 1.0)
+ */
+-->
+<layout version="0.1.0">
+    <zarinpalgateway_processing_redirect>
+        <reference name="root">
+            <action method="setTemplate"><template>codnitive/zarinpalgateway/blank.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="zarinpalgateway/payment_checkout_redirect" name="zarinpal_gateway_redirect" template="codnitive/zarinpalgateway/payment/checkout/redirect.phtml" />
+        </reference>
+    </zarinpalgateway_processing_redirect>
+
+    <zarinpalgateway_processing_failure>
+        <reference name="root">
+            <action method="setTemplate"><template>codnitive/zarinpalgateway/blank.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="zarinpalgateway/transaction_failure" name="zarinpal_gateway_failure" template="codnitive/zarinpalgateway/transaction/failure.phtml" />
+        </reference>
+    </zarinpalgateway_processing_failure>
+</layout>
